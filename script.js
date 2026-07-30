@@ -69,16 +69,52 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   document.querySelectorAll(".signal-panel, .metric").forEach((card) => {
     card.addEventListener("pointermove", (event) => {
       const bounds = card.getBoundingClientRect();
-      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const pointerX = (event.clientX - bounds.left) / bounds.width;
+      const x = pointerX - 0.5;
       const y = (event.clientY - bounds.top) / bounds.height - 0.5;
       card.style.setProperty("--tilt-x", `${y * -7}deg`);
       card.style.setProperty("--tilt-y", `${x * 9}deg`);
       card.style.setProperty("--glow-x", `${(x + 0.5) * 100}%`);
       card.style.setProperty("--glow-y", `${(y + 0.5) * 100}%`);
+
+      const bars = [...card.querySelectorAll(".mini-bars i, .ops-bars i, .metric-chart i")];
+      bars.forEach((bar, index) => {
+        const barCenter = (index + 0.5) / bars.length;
+        const influence = Math.max(0, 1 - Math.abs(pointerX - barCenter) * 4.2);
+        bar.style.setProperty("--bar-lift", `${influence * -12}px`);
+        bar.style.setProperty("--bar-scale", `${1 + influence * 0.34}`);
+        bar.style.setProperty("--bar-bright", `${1 + influence * 0.75}`);
+        bar.style.setProperty("--bar-glow", `${influence * 13}px`);
+      });
     });
     card.addEventListener("pointerleave", () => {
       card.style.setProperty("--tilt-x", "0deg");
       card.style.setProperty("--tilt-y", "0deg");
+      card.querySelectorAll(".mini-bars i, .ops-bars i, .metric-chart i").forEach((bar) => {
+        bar.style.setProperty("--bar-lift", "0px");
+        bar.style.setProperty("--bar-scale", "1");
+        bar.style.setProperty("--bar-bright", "1");
+        bar.style.setProperty("--bar-glow", "0px");
+      });
+    });
+  });
+
+  document.querySelectorAll(".timeline-item, .education-cards article").forEach((card) => {
+    const isEducationCard = card.matches(".education-cards article");
+    card.addEventListener("pointermove", (event) => {
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width;
+      const y = (event.clientY - bounds.top) / bounds.height;
+      card.style.setProperty("--spot-x", `${x * 100}%`);
+      card.style.setProperty("--spot-y", `${y * 100}%`);
+      if (isEducationCard) {
+        card.style.setProperty("--card-rx", `${(y - 0.5) * -5}deg`);
+        card.style.setProperty("--card-ry", `${(x - 0.5) * 7}deg`);
+      }
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--card-rx", "0deg");
+      card.style.setProperty("--card-ry", "0deg");
     });
   });
 }
