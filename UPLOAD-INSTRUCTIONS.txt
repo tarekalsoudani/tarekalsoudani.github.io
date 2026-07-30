@@ -1,0 +1,11 @@
+TAREK AL SOUDANI — INTERACTIVE EXECUTIVE PROFILE
+
+1. Extract this ZIP file.
+2. Open the tarekalsoudani.github.io repository on GitHub.
+3. Choose Add file > Upload files.
+4. Upload all extracted files and folders to the repository root.
+5. Confirm replacement of index.html and styles.css.
+6. Commit the changes.
+7. Wait about one minute, open the site, and press Ctrl + F5.
+
+Keep the cv folder structure unchanged.
