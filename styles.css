@@ -961,3 +961,217 @@ footer { background: #02060d; }
   .metric-chart { height: 42px; }
   .executive-profile, .case-section, .capabilities-section, .experience-section, .education-section { padding-right: 18px; padding-left: 18px; }
 }
+
+/* Mobile-first composition: keep the portrait, copy and metrics in normal flow */
+@media (max-width: 700px) {
+  .hero {
+    min-height: auto;
+    overflow: hidden;
+  }
+  .site-header {
+    height: 72px;
+    padding: 0 16px;
+  }
+  .wordmark {
+    max-width: 190px;
+    font-size: 16px;
+    line-height: 1.05;
+  }
+  .wordmark small {
+    font-size: 8px;
+    letter-spacing: .15em;
+  }
+  .header-status {
+    gap: 7px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .header-status span {
+    width: 6px;
+    height: 6px;
+  }
+  .hero-grid {
+    display: flex;
+    width: calc(100% - 32px);
+    min-height: 0;
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .hero-copy {
+    width: 100%;
+    max-width: none;
+    padding: 44px 0 22px;
+  }
+  .eyebrow {
+    margin-bottom: 20px;
+    font-size: 10px;
+    letter-spacing: .12em;
+  }
+  h1 {
+    max-width: 100%;
+    font-size: clamp(52px, 15vw, 64px);
+    line-height: .92;
+  }
+  h1 > span {
+    max-width: 350px;
+    margin-top: 20px;
+    font-size: .43em;
+    line-height: 1.14;
+  }
+  .hero-lead {
+    max-width: none;
+    margin-top: 25px;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 11px;
+    margin-top: 25px;
+  }
+  .button,
+  .primary,
+  .secondary {
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+    padding: 0 18px;
+    font-size: 13px;
+  }
+  .availability {
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 21px;
+    padding: 0 4px;
+    font-size: 12px;
+  }
+  .hero-visual {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 330px;
+    margin: 0;
+    opacity: 1;
+    translate: none;
+  }
+  .command-grid {
+    inset: -3% -28% -8%;
+    opacity: .42;
+  }
+  .executive-portrait {
+    right: auto;
+    bottom: -2px;
+    left: 50%;
+    width: min(285px, 82vw);
+    transform: translateX(-50%);
+  }
+  .executive-portrait::before {
+    inset: 20% 0 2%;
+  }
+  .digital-orbit {
+    right: auto;
+    bottom: 16%;
+    left: 50%;
+    width: 112%;
+    height: 43%;
+    transform: translateX(-50%) rotate(-11deg);
+  }
+  .orbit-two {
+    right: auto;
+    bottom: 13%;
+    left: 50%;
+    width: 94%;
+    height: 54%;
+    transform: translateX(-50%) rotate(17deg);
+  }
+  .impact-strip {
+    grid-template-columns: 1fr 1fr;
+    width: calc(100% - 32px);
+    margin: 0 auto 34px;
+  }
+  .metric {
+    min-height: 132px;
+    padding: 17px 15px 14px;
+  }
+  .metric:nth-child(2) {
+    border-right: 0;
+  }
+  .metric:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+  .metric-value {
+    gap: 5px;
+    font-size: clamp(39px, 12vw, 48px);
+    white-space: nowrap;
+  }
+  .metric-value small {
+    font-size: 12px;
+  }
+  .metric p {
+    max-width: 125px;
+    font-size: 9px;
+    line-height: 1.25;
+  }
+  .metric-chart {
+    right: 15px;
+    bottom: 12px;
+    left: 15px;
+    height: 34px;
+  }
+  .metric-insight {
+    display: none;
+  }
+  .executive-profile,
+  .case-section,
+  .capabilities-section,
+  .experience-section,
+  .education-section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  .profile-grid {
+    margin-top: 18px;
+  }
+  .profile-grid h2,
+  .section-heading h2,
+  .capabilities-copy h2,
+  .education-section h2,
+  footer h2 {
+    font-size: clamp(35px, 10.5vw, 43px);
+    line-height: 1.04;
+  }
+  .profile-copy {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .profile-copy p {
+    margin-bottom: 18px;
+  }
+  .profile-copy blockquote {
+    margin-top: 28px;
+    padding-left: 18px;
+    font-size: 17px;
+  }
+  .timeline-item:hover {
+    padding-right: 10px;
+    padding-left: 16px;
+  }
+}
+
+@media (max-width: 390px) {
+  .wordmark { max-width: 170px; font-size: 15px; }
+  .header-status { font-size: 9px; }
+  .hero-grid,
+  .impact-strip { width: calc(100% - 24px); }
+  .hero-copy { padding-top: 38px; }
+  h1 { font-size: 50px; }
+  h1 > span { font-size: 23px; }
+  .hero-visual { height: 310px; }
+  .executive-portrait { width: 265px; }
+  .metric { padding-right: 12px; padding-left: 12px; }
+  .metric-value { font-size: 40px; }
+}
