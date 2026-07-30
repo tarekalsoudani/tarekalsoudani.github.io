@@ -64,3 +64,21 @@ if (visual && !reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     { passive: true },
   );
 }
+
+if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+  document.querySelectorAll(".signal-panel, .metric").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+      card.style.setProperty("--tilt-x", `${y * -7}deg`);
+      card.style.setProperty("--tilt-y", `${x * 9}deg`);
+      card.style.setProperty("--glow-x", `${(x + 0.5) * 100}%`);
+      card.style.setProperty("--glow-y", `${(y + 0.5) * 100}%`);
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
+    });
+  });
+}

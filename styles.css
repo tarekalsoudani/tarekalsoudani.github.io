@@ -456,9 +456,9 @@ h1 > span {
   animation: grid-breathe 8s ease-in-out infinite;
 }
 .executive-portrait {
-  right: 19%;
-  bottom: 0;
-  width: min(470px, 61%);
+  right: 17%;
+  bottom: -1%;
+  width: min(425px, 56%);
   padding: 0;
   overflow: visible;
   border: 0;
@@ -469,17 +469,20 @@ h1 > span {
 .executive-portrait::before {
   position: absolute;
   z-index: -1;
-  inset: 14% 3% 0;
+  inset: 18% 0 3%;
   border-radius: 50%;
   background: radial-gradient(circle, rgb(28 99 229 / 36%), transparent 68%);
   content: "";
   filter: blur(22px);
 }
 .executive-portrait img {
-  border: 1px solid rgb(122 166 255 / 24%);
-  border-radius: 50%;
-  background: #ede9df;
-  box-shadow: 0 0 0 10px rgb(9 24 48 / 52%), 0 0 70px rgb(27 100 233 / 26%);
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 38px rgb(0 0 0 / 48%)) drop-shadow(0 0 28px rgb(47 104 255 / 17%));
 }
 .digital-orbit {
   position: absolute;
@@ -506,6 +509,10 @@ h1 > span {
 .orbit-two { width: 60%; height: 51%; right: 19%; bottom: 9%; transform: rotate(17deg); animation-delay: -3s; }
 .orbit-two i { top: 12%; right: 8%; left: auto; background: #40a7ff; }
 .signal-panel {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --glow-x: 50%;
+  --glow-y: 50%;
   position: absolute;
   z-index: 7;
   width: 190px;
@@ -515,6 +522,50 @@ h1 > span {
   background: linear-gradient(145deg, rgb(11 28 51 / 90%), rgb(5 15 29 / 84%));
   box-shadow: 0 16px 40px rgb(0 0 0 / 30%), inset 0 1px rgb(255 255 255 / 4%);
   backdrop-filter: blur(18px);
+  pointer-events: auto;
+  transform: perspective(700px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  cursor: default;
+}
+.signal-panel::before,
+.metric::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--glow-x) var(--glow-y), rgb(69 145 255 / 18%), transparent 42%);
+  content: "";
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+}
+.signal-panel:hover {
+  z-index: 15;
+  border-color: rgb(79 164 255 / 66%);
+  background: linear-gradient(145deg, rgb(14 37 67 / 96%), rgb(6 19 36 / 94%));
+  box-shadow: 0 24px 55px rgb(0 0 0 / 48%), 0 0 28px rgb(47 104 255 / 16%), inset 0 1px rgb(255 255 255 / 8%);
+}
+.signal-panel:hover::before,
+.metric:hover::after { opacity: 1; }
+.signal-panel:hover .mini-bars i,
+.signal-panel:hover .ops-bars i { animation: dashboard-bars 700ms cubic-bezier(.2,.8,.2,1) both; }
+.signal-panel:hover .security-ring { animation: ring-focus 800ms ease both; }
+.panel-detail {
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  color: #a9bad0;
+  font-size: 9px;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: max-height 240ms ease, margin 240ms ease, opacity 240ms ease, transform 240ms ease;
+}
+.signal-panel:hover .panel-detail {
+  max-height: 46px;
+  margin-top: 10px;
+  opacity: 1;
+  transform: translateY(0);
 }
 .panel-label { display: flex; align-items: center; gap: 9px; color: #9bacc2; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
 .panel-label span { width: 5px; height: 5px; }
@@ -558,12 +609,44 @@ h1 > span {
   box-shadow: 0 24px 70px rgb(0 0 0 / 34%);
 }
 .metric {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --glow-x: 50%;
+  --glow-y: 50%;
   position: relative;
   min-height: 178px;
   padding: 25px 28px 22px;
   overflow: hidden;
   border-color: rgb(114 156 219 / 20%);
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  cursor: pointer;
 }
+.metric:hover {
+  z-index: 5;
+  border-color: rgb(79 164 255 / 55%);
+  background: linear-gradient(150deg, rgb(13 36 66 / 92%), rgb(5 17 34 / 94%));
+  box-shadow: 0 22px 50px rgb(0 0 0 / 35%), 0 0 24px rgb(47 104 255 / 10%);
+}
+.metric:hover .metric-value { color: white; text-shadow: 0 0 22px rgb(87 143 255 / 35%); transform: translateZ(24px); }
+.metric:hover .metric-chart i { filter: brightness(1.45); transform: scaleY(1.12); }
+.metric-value, .metric-chart i { transition: color 180ms ease, text-shadow 180ms ease, transform 240ms ease, filter 180ms ease; }
+.metric-insight {
+  position: absolute;
+  z-index: 4;
+  top: 24px;
+  right: 24px;
+  color: var(--teal);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.metric:hover .metric-insight { opacity: 1; transform: translateX(0); }
 .metric::before {
   position: absolute;
   top: 0;
@@ -634,6 +717,16 @@ footer { background: #02060d; }
 @keyframes chart-grow {
   from { transform: scaleY(0); opacity: 0; }
 }
+@keyframes dashboard-bars {
+  0% { transform: scaleY(.72); filter: brightness(.85); }
+  65% { transform: scaleY(1.12); filter: brightness(1.5); }
+  100% { transform: scaleY(1); filter: brightness(1.2); }
+}
+@keyframes ring-focus {
+  0% { transform: scale(.94) rotate(-8deg); filter: brightness(.85); }
+  65% { transform: scale(1.08) rotate(4deg); filter: brightness(1.3); }
+  100% { transform: scale(1.03) rotate(0); filter: brightness(1.15); }
+}
 
 @media (max-width: 1050px) {
   .site-header { width: 100%; padding: 0 28px; }
@@ -651,7 +744,7 @@ footer { background: #02060d; }
   h1 { font-size: clamp(54px, 16vw, 72px); }
   h1 > span { font-size: .42em; }
   .hero-visual { right: -18%; bottom: 0; width: 136%; height: 430px; opacity: .9; }
-  .executive-portrait { right: 25%; bottom: 6%; width: 250px; }
+  .executive-portrait { right: 24%; bottom: -2%; width: 225px; }
   .digital-orbit { right: 22%; bottom: 12%; width: 58%; }
   .impact-strip { width: calc(100% - 36px); }
   .metric { min-height: 145px; }
