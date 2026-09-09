@@ -23,7 +23,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 h1,h2,h3,p { margin-top: 0; }
 button, h1,h2,h3,p,div { min-width: 0; }
 button { touch-action: manipulation; }
-.shell { width: min(1320px, calc(100% - 100px)); margin-inline: auto; }
+.shell { width: calc(100% - clamp(64px, 8vw, 192px)); margin-inline: auto; }
 .section { padding-block: 100px; }
 .eyebrow { color: var(--accent); font: 12px/1.5 var(--font-mono); font-weight: bold; letter-spacing: .09em; margin-bottom: 28px; }
 .fine-line { display: inline-block; width: 30px; height: 1px; background: var(--accent); margin-right: 12px; vertical-align: middle; }
