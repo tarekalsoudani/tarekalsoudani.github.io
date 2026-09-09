@@ -1,11 +1,11 @@
-TAREK AL SOUDANI — INTERACTIVE EXECUTIVE PROFILE
+نسخة GitHub من آخر تصميم معتمد - 9 سبتمبر 2026
 
-1. Extract this ZIP file.
-2. Open the tarekalsoudani.github.io repository on GitHub.
-3. Choose Add file > Upload files.
-4. Upload all extracted files and folders to the repository root.
-5. Confirm replacement of index.html and styles.css.
-6. Commit the changes.
-7. Wait about one minute, open the site, and press Ctrl + F5.
+1. فك ضغط ملف ZIP.
+2. افتح مستودع tarekalsoudani.github.io على GitHub.
+3. اختر Add file ثم Upload files.
+4. ارفع جميع الملفات ومجلد cv إلى المجلد الرئيسي للمستودع، واستبدل الملفات المتكررة.
+5. اضغط Commit changes.
+6. بعد اكتمال النشر، حدّث الصفحة باستخدام Ctrl + F5.
 
-Keep the cv folder structure unchanged.
+ارفع المحتويات مباشرة، وليس ملف ZIP أو مجلدًا إضافيًا يحتويها.
+لا تحتاج npm أو أدوات بناء. ملف السيرة الذاتية المرفق هو CV v9.
