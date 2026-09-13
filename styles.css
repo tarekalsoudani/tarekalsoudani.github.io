@@ -56,14 +56,16 @@ h1 > span { display: inline; font-size: 1em; font-weight: inherit; letter-spacin
 .button-accent:hover { background: #d6ffa4; }
 .text-link { padding-block: 10px; border-bottom: 1px solid #4e5652; font-size: 14px; }
 .text-link span { margin-left: 17px; color: var(--accent); }
-.portrait-stage { grid-area: portrait; position: relative; align-self: stretch; min-height: 615px; isolation: isolate; overflow: hidden; }
-.portrait-light { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 50% at 55% 43%, #5c776648, transparent 78%), linear-gradient(125deg, #171b1d, #1e2322 49%, #121616); z-index: -3; }
-.portrait-stage::after { position: absolute; z-index: 2; content: ""; bottom: 0; left: 0; right: 0; height: 35%; pointer-events: none; background: linear-gradient(0deg, #101214 2%, #10121400 100%); }
-.portrait-axis { position: absolute; inset: 0 28px; z-index: -1; border-left: 1px solid #73806925; border-right: 1px solid #73806925; transform: skewX(-20deg); }
+.portrait-stage { grid-area: portrait; position: relative; align-self: stretch; min-height: 615px; isolation: isolate; overflow: hidden; background: var(--bg); }
+.portrait-light { position: absolute; inset: 0; background: radial-gradient(ellipse 64% 72% at 62% 46%, #43544728, transparent 82%); z-index: -3; }
+.portrait-stage::before, .portrait-stage::after { position: absolute; z-index: 2; content: ""; left: 0; right: 0; pointer-events: none; }
+.portrait-stage::before { top: 0; height: 16%; background: linear-gradient(var(--bg), transparent); }
+.portrait-stage::after { bottom: 0; height: 32%; background: linear-gradient(0deg, var(--bg) 3%, transparent 100%); }
+.portrait-axis { display: none; }
 .portrait-axis span { position: absolute; width: 100%; height: 1px; background: #9ea59b1a; top: 25%; }
 .portrait-axis span:nth-child(2) { top: 50%; }
 .portrait-axis span:nth-child(3) { top: 75%; }
-.executive-portrait { position: absolute; width: auto; max-width: none; height: calc(100% - 28px); left: 50%; bottom: 0; z-index: 1; filter: saturate(1.05) contrast(1.12) brightness(1.02); transform: translateX(calc(-50% + var(--portrait-x, 0px))); transition: transform .6s ease-out; }
+.executive-portrait { position: absolute; width: 100%; max-width: none; height: 100%; object-fit: cover; object-position: 68% center; left: 0; bottom: 0; z-index: 1; filter: saturate(.94) contrast(1.06); mask-image: linear-gradient(to right, transparent 0%, #000 17%, #000 85%, transparent 100%); transform: translateX(var(--portrait-x, 0px)); transition: transform .6s ease-out; }
 .portrait-caption { position: absolute; z-index: 4; left: 25px; right: 30px; bottom: 39px; border-left: 2px solid var(--accent); padding-left: 17px; }
 .portrait-caption strong { display: block; margin-top: 0; font-size: 25px; letter-spacing: -.035em; font-weight: 500; }
 .hero-foot { grid-area: foot; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 25px; border-block: 1px solid var(--line); color: #9ca59f; font: 12px/1.5 var(--font-mono); letter-spacing: .035em; }
@@ -196,7 +198,7 @@ h2 em { color: #8d9792; font-style: normal; }
   .header-contact { margin-left: 15px; }
   .hero { column-gap: 25px; }
   .portrait-stage { min-height: 570px; }
-  .executive-portrait { width: auto; left: 50%; }
+  .executive-portrait { width: 100%; left: 0; }
   .hero-foot > span:nth-child(2) { display: none; }
   .metric-grid { grid-template-columns: repeat(3,1fr); }
   .metric-button { min-height: 155px; }
@@ -260,8 +262,8 @@ h2 em { color: #8d9792; font-style: normal; }
   h1 > span { display: inline; font-size: 1em; letter-spacing: inherit; }
   .hero-subtitle { font-size: 26px; line-height: 1.15; margin: 0; }
   .portrait-stage { min-height: 0; height: 355px; margin-top: 22px; }
-  .executive-portrait { width: min(360px,105%); height: auto; left: 50%; bottom: -5px; transform: translateX(-50%); }
-  .portrait-stage::after { height: 28%; }
+  .executive-portrait { width: 100%; height: 100%; left: 0; bottom: 0; transform: none; }
+  .portrait-stage::after { height: 24%; }
   .portrait-caption { bottom: 22px; }
   .portrait-caption strong { font-size: 20px; margin-top: 0; }
   .hero-message { padding-block: 25px 32px; }
