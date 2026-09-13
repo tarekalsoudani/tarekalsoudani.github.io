@@ -57,13 +57,13 @@ h1 > span { display: inline; font-size: 1em; font-weight: inherit; letter-spacin
 .text-link { padding-block: 10px; border-bottom: 1px solid #4e5652; font-size: 14px; }
 .text-link span { margin-left: 17px; color: var(--accent); }
 .portrait-stage { grid-area: portrait; position: relative; align-self: stretch; min-height: 615px; isolation: isolate; overflow: hidden; }
-.portrait-light { position: absolute; inset: 0; background: radial-gradient(ellipse at 54% 46%, #56644b2b, transparent 60%), linear-gradient(125deg, #171b1d, #1e2322 49%, #121616); z-index: -3; }
+.portrait-light { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 50% at 55% 43%, #5c776648, transparent 78%), linear-gradient(125deg, #171b1d, #1e2322 49%, #121616); z-index: -3; }
 .portrait-stage::after { position: absolute; z-index: 2; content: ""; bottom: 0; left: 0; right: 0; height: 35%; pointer-events: none; background: linear-gradient(0deg, #101214 2%, #10121400 100%); }
 .portrait-axis { position: absolute; inset: 0 28px; z-index: -1; border-left: 1px solid #73806925; border-right: 1px solid #73806925; transform: skewX(-20deg); }
 .portrait-axis span { position: absolute; width: 100%; height: 1px; background: #9ea59b1a; top: 25%; }
 .portrait-axis span:nth-child(2) { top: 50%; }
 .portrait-axis span:nth-child(3) { top: 75%; }
-.executive-portrait { position: absolute; width: auto; max-width: none; height: calc(100% - 28px); left: 50%; bottom: 0; z-index: 1; filter: saturate(.47) contrast(1.08); transform: translateX(calc(-50% + var(--portrait-x, 0px))); transition: transform .6s ease-out; }
+.executive-portrait { position: absolute; width: auto; max-width: none; height: calc(100% - 28px); left: 50%; bottom: 0; z-index: 1; filter: saturate(1.05) contrast(1.12) brightness(1.02); transform: translateX(calc(-50% + var(--portrait-x, 0px))); transition: transform .6s ease-out; }
 .portrait-caption { position: absolute; z-index: 4; left: 25px; right: 30px; bottom: 39px; border-left: 2px solid var(--accent); padding-left: 17px; }
 .portrait-caption strong { display: block; margin-top: 0; font-size: 25px; letter-spacing: -.035em; font-weight: 500; }
 .hero-foot { grid-area: foot; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 25px; border-block: 1px solid var(--line); color: #9ca59f; font: 12px/1.5 var(--font-mono); letter-spacing: .035em; }
